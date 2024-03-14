@@ -16,7 +16,7 @@ func (worker *worker) returnStatus(job libworker.Job) (result []byte, err error)
 
 	err = job.Err()
 	if err != nil {
-		return
+		return nil, err
 	}
 
 	received := string(job.Data())
@@ -33,5 +33,5 @@ func (worker *worker) returnStatus(job libworker.Job) (result []byte, err error)
 		worker.mainWorker.tasks,
 	))
 
-	return
+	return result, nil
 }
